@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="shortcut icon" href="{%  static 'favicon/favicon.ico' %}"/>
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">ChatRooms</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div  class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/appchat/">Home</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav-right">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/accounts/profile/">Profile {{ user.username }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/accounts/logout/">Log out</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/accounts/login/">Log in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/accounts/signup/">Sign up</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page content-->
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-5" align="center">
+                    {% block content %}
+                    {% endblock content %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

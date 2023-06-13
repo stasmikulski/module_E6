@@ -1,0 +1,29 @@
+{% extends 'default.html' %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+<hr>
+{% if user.is_authenticated %}
+<div class="container">
+<ul>
+    {% for u in allusers %}
+    <li>
+        <img src="/media/{{ u.profile.avatar }}" alt="Avatar" class="logo-image"
+                style="float: left; width: 50px; height: 50px; border-radius: 15px;">
+                <h3>{{ u.profile }}</h3>
+                <h3>{{ u.profile.about }}</h3>
+
+
+        <br>
+    </li>
+
+    {% endfor %}
+    </ul>
+</div>
+<hr>
+{% endif %}
+
+
+{% endblock content %}
